@@ -81,7 +81,7 @@
              <hour>23</hour>
              <minute>59</minute>
              <second>59</second>
-             <year>2005</year>
+             <year>2080</year>
              <month>1</month>
              <day>1</day>
             </datetime>
@@ -98,7 +98,7 @@
            </property>
            <property name="maximumDate">
             <date>
-             <year>2005</year>
+             <year>2080</year>
              <month>1</month>
              <day>1</day>
             </date>
@@ -118,7 +118,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="check_medal">
+     <widget class="QCheckBox" name="check_medal">
       <property name="text">
        <string>Наличие золотой или серебрянной медали</string>
       </property>
@@ -197,7 +197,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QRadioButton" name="check_dogvor">
+     <widget class="QCheckBox" name="check_dogvor">
       <property name="text">
        <string>Готовность учится на договорной основе</string>
       </property>
@@ -266,7 +266,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
              <item>
-              <widget class="QRadioButton" name="radio_phis_one">
+              <widget class="QRadioButton" name="radio_phys_one">
                <property name="text">
                 <string>Физика</string>
                </property>
@@ -287,6 +287,9 @@
              </item>
              <item>
               <widget class="QSpinBox" name="spin_phis">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="maximum">
                 <number>100</number>
                </property>
@@ -359,7 +362,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_10">
              <item>
-              <widget class="QRadioButton" name="radio_phis_one_2">
+              <widget class="QRadioButton" name="radio_phys_one_2">
                <property name="text">
                 <string>Физика</string>
                </property>
@@ -443,7 +446,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_13">
              <item>
-              <widget class="QRadioButton" name="radio_phis_one_3">
+              <widget class="QRadioButton" name="radio_phys_one_3">
                <property name="text">
                 <string>Физика</string>
                </property>
@@ -543,7 +546,7 @@
      <x>0</x>
      <y>0</y>
      <width>592</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">

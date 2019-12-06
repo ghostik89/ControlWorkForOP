@@ -27,13 +27,11 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-        student.cpp \
-    examplevalidator.cpp
+        student.cpp
 
 HEADERS += \
         mainwindow.h \
-        student.h \
-    examplevalidator.h
+        student.h
 
 FORMS += \
         mainwindow.ui

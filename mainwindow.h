@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include "student.h"
-#include "examplevalidator.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,25 +18,42 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    Student first_student;//первый студент
-    Student second_student;//второй студент
-    ExampleValidator valid;
+    Student first_student = Student();//первый студент
+    Student second_student = Student();//второй студент
+
+    void save(Student& current);
+    void show_student(Student current);
 
 private slots:
-    //слоты для записи и хранения студентов
-    void slt_save_first_student();
-    void slt_save_second_student();
-    void slt_show_first_student();
-    void slt_show_second_student();
+    void on_btn_save_first_student_clicked();
+    void on_btn_save_second_student_clicked();
+    void on_btn_first_student_clicked();
+    void on_btn_second_student_clicked();
+    void on_check_medal_clicked();
 
-    void slt_medal_flag(bool);//бесполезная хня
-    void slt_middle_marks(bool);//проверка средней оценки с учетом медали
-    void slt_marks_tabs();//проверка балла экзамена с учетом экзамена(не правильно подключен слот)
-    void slt_check_unquie_exam();//проверка на уникальность экзамена
-    void slt_gold_medal_exam(bool);//бесполезно
-    //проверка даты рождения
-    //проверка ФИО
-    //заблокировать все остальные поля ввода, если введен один из экзаменов
+    //проверка уникальности экзамена
+    void on_radio_math_one_clicked();
+    void on_radio_math_one_2_clicked();
+    void on_radio_math_one_3_clicked();
+
+    void on_radio_math_two_clicked();
+    void on_radio_math_two_2_clicked();
+    void on_radio_math_two_3_clicked();
+
+    void on_radio_phys_one_clicked();
+    void on_radio_phys_one_2_clicked();
+    void on_radio_phys_one_3_clicked();
+
+    void on_radio_phys_two_clicked();
+    void on_radio_phys_two_2_clicked();
+    void on_radio_phys_3_clicked();
+
+    void on_radio_rus_clicked();
+    void on_radio_rus_2_clicked();
+    void on_radio_rus_3_clicked();
+
+    //автомат
+    void on_spin_rus_valueChanged();
 };
 
 #endif // MAINWINDOW_H
