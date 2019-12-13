@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "student.h"
+#include <vector>
+
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -18,18 +21,17 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    Student first_student = Student();//первый студент
-    Student second_student = Student();//второй студент
+    vector<Student> list_of_students;
+
 
     void save(Student& current);
     void show_student(Student current);
+    void clear_fields();
+    int get_row(Student);
 
 private slots:
-    void on_btn_save_first_student_clicked();
-    void on_btn_save_second_student_clicked();
-    void on_btn_first_student_clicked();
-    void on_btn_second_student_clicked();
     void on_check_medal_clicked();
+    void on_check_dogvor_clicked();
 
     //проверка уникальности экзамена
     void on_radio_math_one_clicked();
@@ -54,6 +56,15 @@ private slots:
 
     //автомат
     void on_spin_rus_valueChanged();
+    void on_spin_math_valueChanged();
+    void on_spin_phis_valueChanged();
+
+    //сохраниние и работа с таблицей
+    void on_btn_create_clicked();
+    void on_btn_save_clicked();
+    void on_btn_delete_clicked();
+    void on_btn_fill_clicked();
+    void on_table_student_cellClicked();
 };
 
 #endif // MAINWINDOW_H
