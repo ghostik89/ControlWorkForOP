@@ -578,6 +578,7 @@ void MainWindow::on_btn_delete_clicked(){
 }
 void MainWindow::on_btn_fill_clicked(){
     Student student("Чесноков Владимир", "1998.04.05", "мужской");
+    qDebug() << student.get_sbirthday();
     int pos = get_row(student);
     ui->table_students->insertRow(pos);
     list_of_students.insert(list_of_students.begin() + pos, student);
@@ -622,7 +623,7 @@ void MainWindow::create_row(Student current,int pos){
 
     //Заполняем вторую ячейку
     qDebug() << current.get_birthday().toString();
-    item = new QTableWidgetItem(current.get_birthday().toString());
+    item = new QTableWidgetItem(current.get_sbirthday());
     ui->table_students->setItem(pos, 1, item);
     ui->table_students->item(pos,1)->setTextAlignment(Qt::AlignCenter);
 

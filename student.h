@@ -26,6 +26,7 @@ public:
     //getters
     QString get_FIO() { return FIO; }
     QDate get_birthday() { return QDate::fromString(birthday); }
+    QString get_sbirthday() {    return birthday;    }
     bool get_gender() {  return gender == "Мужской" ? true : false; }
     bool get_medal() {  return medal; }
     double get_middle_mark() {  return middle_mark.toDouble(); }
