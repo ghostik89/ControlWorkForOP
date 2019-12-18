@@ -8,6 +8,8 @@ class Student
 {
 public:
     Student();
+    Student(QString nFIO, QString nbirthday, QString ngender);
+
     //setters
     void set_FIO(QString new_FIO){ FIO = new_FIO; }
     void set_birthday(QString new_birthday){ birthday = new_birthday; }
@@ -34,6 +36,12 @@ public:
     bool get_can_pay() { return can_pay; }
     int get_student_bill(){ return bill.toInt(); }
     QString get_middle_score() {return QString::number(middle_score); }
+
+    //operators
+    bool operator==(const Student& right);
+    Student& operator=(const Student& right);
+    QDataStream& operator<<(QDataStream &out);
+    QDataStream& operator>>(QDataStream& in);
 
     static bool compare_students(Student first, Student second);
     ~Student();

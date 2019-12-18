@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "student.h"
+#include <QMap>
 #include <vector>
 
 using namespace std;
@@ -21,12 +22,14 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QMap<int, Student> map_of_students;
     vector<Student> list_of_students;
-
 
     void save(Student& current);
     void show_student(Student current);
     void clear_fields();
+    void create_row(Student current, int pos);
+
     int get_row(Student);
 
 private slots:
@@ -64,7 +67,7 @@ private slots:
     void on_btn_save_clicked();
     void on_btn_delete_clicked();
     void on_btn_fill_clicked();
-    void on_table_student_cellClicked();
+    void slt_show_active();
 };
 
 #endif // MAINWINDOW_H

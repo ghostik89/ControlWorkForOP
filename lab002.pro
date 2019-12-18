@@ -25,11 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        database.cpp \
         main.cpp \
         mainwindow.cpp \
         student.cpp
 
 HEADERS += \
+        database.h \
         mainwindow.h \
         student.h
 

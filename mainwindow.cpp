@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->student_birthday->setMinimumDate(QDate(QDate::currentDate().year() - 50, QDate::currentDate().month(), QDate::currentDate().day()));
     ui->student_birthday->setDate(QDate(QDate::currentDate().year() - 15, QDate::currentDate().month(), QDate::currentDate().day()));
 
+    connect(ui->table_students, SIGNAL(cellClicked(int, int)), this, SLOT(slt_show_active()));
+
     //задание валидатора для ФИО
     QRegExp regex_fio("([А-Я]{1}[а-я]+ [А-Я]{1}[а-я]+ [А-Я]{1}[а-я]+){45}$");
     QValidator *fio_validate = new QRegExpValidator(regex_fio, this);
@@ -551,29 +553,13 @@ void MainWindow::on_btn_create_clicked(){
     int insert_pos = get_row(student);
 
     ui->table_students->insertRow(insert_pos);
-    list_of_students.push_back(student);
-    sort(list_of_students.begin(), list_of_students.end(), Student::compare_students);
+    list_of_students.insert(list_of_students.begin() + insert_pos, student);
 
-    QTableWidgetItem *item;
-
-    //Заполняем первую ячейку
-    item = new QTableWidgetItem(list_of_students[insert_pos].get_FIO());
-    ui->table_students->setItem(insert_pos, 0, item);
-    ui->table_students->item(insert_pos,0)->setTextAlignment(Qt::AlignCenter);
-
-    //Заполняем вторую ячейку
-    item = new QTableWidgetItem(list_of_students[insert_pos].get_birthday().toString());
-    ui->table_students->setItem(insert_pos, 1, item);
-    ui->table_students->item(insert_pos,1)->setTextAlignment(Qt::AlignCenter);
-
-    //Заполняем третью ячейку
-    item = new QTableWidgetItem(list_of_students[insert_pos].get_middle_score());
-    ui->table_students->setItem(insert_pos, 2, item);
-    ui->table_students->item(insert_pos,2)->setTextAlignment(Qt::AlignCenter);
-
+    create_row(student, insert_pos);
     ui->btn_save->setEnabled(true);
     ui->btn_delete->setEnabled(true);
 }
+//not works
 void MainWindow::on_btn_save_clicked(){
      on_btn_delete_clicked(); on_btn_create_clicked();
 }
@@ -590,8 +576,26 @@ void MainWindow::on_btn_delete_clicked(){
     if(current_row == -1)
         clear_fields();
 }
-void MainWindow::on_btn_fill_clicked(){}
-void MainWindow::on_table_student_cellClicked(){
+void MainWindow::on_btn_fill_clicked(){
+    Student student("Чесноков Владимир", "1998.04.05", "мужской");
+    int pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Чесноков Владимир", "1998.05.05", "мужской");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Чесноков Владимир", "1998.07.05", "мужской");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+}
+void MainWindow::slt_show_active(){
     clear_fields();
     if(!list_of_students.empty()){
         int row = ui->table_students->currentRow();
@@ -606,4 +610,25 @@ int MainWindow::get_row(Student student){
     int index = 0;
     while(!list_of_students.empty() && Student::compare_students(student, list_of_students[index])) index++;
     return index;
+}
+
+void MainWindow::create_row(Student current,int pos){
+    QTableWidgetItem *item;
+
+    //Заполняем первую ячейку
+    item = new QTableWidgetItem(current.get_FIO());
+    ui->table_students->setItem(pos, 0, item);
+    ui->table_students->item(pos,0)->setTextAlignment(Qt::AlignCenter);
+
+    //Заполняем вторую ячейку
+    qDebug() << current.get_birthday().toString();
+    item = new QTableWidgetItem(current.get_birthday().toString());
+    ui->table_students->setItem(pos, 1, item);
+    ui->table_students->item(pos,1)->setTextAlignment(Qt::AlignCenter);
+
+    //Заполняем третью ячейку
+    item = new QTableWidgetItem(current.get_middle_score());
+    ui->table_students->setItem(pos, 2, item);
+    ui->table_students->item(pos,2)->setTextAlignment(Qt::AlignCenter);
+
 }
