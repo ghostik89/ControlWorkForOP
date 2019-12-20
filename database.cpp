@@ -1,5 +1,6 @@
 #include "database.h"
 #include "student.h"
+#include <QMapIterator>
 
 DataBase::DataBase(){}
 DataBase::~DataBase(){}
@@ -36,6 +37,7 @@ void DataBase::update_db(Student current, int id){
     iter.value() = current;
     modified = true;
 }
+
 bool DataBase::save_to_file(QString file_name){}
 bool DataBase::load_from_file(QString file_name){}
 void DataBase::clear(){
@@ -43,7 +45,7 @@ void DataBase::clear(){
     position.clear();
     modified = true;
 }
-bool DataBase::be_modified(){}
+bool DataBase::be_modified(){ return modified;  }
 void DataBase::sort(){}
 
 QDataStream& DataBase::operator<<(QDataStream& out){

@@ -116,65 +116,80 @@ void MainWindow::show_student(Student current){
     if(temp.first == "Русский"){
         ui->radio_rus->setChecked(true);
         ui->spin_rus->setValue(temp.second.toInt());
+        ui->spin_rus->setEnabled(true);
     }
     if(temp.first == "Математика I"){
         ui->radio_math_one->setChecked(true);
         ui->spin_math->setValue(temp.second.toInt());
+        ui->spin_math->setEnabled(true);
     }
     if(temp.first == "Математика II"){
         ui->radio_math_two->setChecked(true);
+        ui->spin_math->setEnabled(true);
         ui->spin_math->setValue(temp.second.toInt());
     }
     if(temp.first == "Физика I"){
         ui->radio_phys_one->setChecked(true);
+        ui->spin_phis->setEnabled(true);
         ui->spin_phis->setValue(temp.second.toInt());
     }
     if(temp.first == "Физика II"){
         ui->radio_phys_two->setChecked(true);
+        ui->spin_phis->setEnabled(true);
         ui->spin_phis->setValue(temp.second.toInt());
     }
 
     current.get_second_exam(temp);
     if(temp.first == "Русский"){
         ui->radio_rus_2->setChecked(true);
+        ui->spin_rus_2->setEnabled(true);
         ui->spin_rus_2->setValue(temp.second.toInt());
     }
     if(temp.first == "Математика I"){
         ui->radio_math_one_2->setChecked(true);
+        ui->spin_math_2->setEnabled(true);
         ui->spin_math_2->setValue(temp.second.toInt());
     }
     if(temp.first == "Математика II"){
         ui->radio_math_two_2->setChecked(true);
+        ui->spin_math_2->setEnabled(true);
         ui->spin_math_2->setValue(temp.second.toInt());
     }
     if(temp.first == "Физика I"){
         ui->radio_phys_one_2->setChecked(true);
+        ui->spin_phis_2->setEnabled(true);
         ui->spin_phis_2->setValue(temp.second.toInt());
     }
     if(temp.first == "Физика II"){
         ui->radio_phys_two_2->setChecked(true);
+        ui->spin_phis_2->setEnabled(true);
         ui->spin_phis_2->setValue(temp.second.toInt());
     }
 
     current.get_third_exam(temp);
     if(temp.first == "Русский"){
         ui->radio_rus_3->setChecked(true);
+        ui->spin_rus_3->setEnabled(true);
         ui->spin_rus_3->setValue(temp.second.toInt());
     }
     if(temp.first == "Математика I"){
         ui->radio_math_one_3->setChecked(true);
+        ui->spin_math_3->setEnabled(true);
         ui->spin_math_3->setValue(temp.second.toInt());
     }
     if(temp.first == "Математика II"){
         ui->radio_math_two_3->setChecked(true);
+        ui->spin_math_3->setEnabled(true);
         ui->spin_math_3->setValue(temp.second.toInt());
     }
     if(temp.first == "Физика I"){
         ui->radio_phys_one_3->setChecked(true);
+        ui->spin_phis_3->setEnabled(true);
         ui->spin_phis_3->setValue(temp.second.toInt());
     }
     if(temp.first == "Физика II"){
         ui->radio_phys_3->setChecked(true);
+        ui->spin_phis_3->setEnabled(true);
         ui->spin_phis_3->setValue(temp.second.toInt());
     }
 
@@ -188,7 +203,6 @@ void MainWindow::show_student(Student current){
         ui->spin_bill->setValue(12000);
     }
 }
-
 
 void MainWindow::on_check_medal_clicked(){
     if(ui->check_medal->isChecked()){
@@ -211,267 +225,6 @@ void MainWindow::on_check_dogvor_clicked(){
     }
 }
 
-//проверка на уникальность экзамена(bag - after clicked other element)
-void MainWindow::on_radio_math_one_clicked(){
-    if(ui->radio_math_one->isChecked()){
-        //активировать ее родное введение
-        ui->spin_math->setEnabled(true);
-
-        ui->spin_rus->setEnabled(false);
-        ui->spin_phis->setEnabled(false);
-        ui->spin_math_2->setEnabled(false);
-        ui->spin_math_3->setEnabled(false);
-    }
-    else{
-        ui->spin_rus->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-        ui->spin_math_2->setEnabled(true);
-        ui->spin_math_3->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_math_one_2_clicked(){
-    if(ui->radio_math_one_2->isChecked()){
-        //активировать ее родное введение
-        ui->spin_math_2->setEnabled(true);
-
-        ui->spin_rus_2->setEnabled(false);
-        ui->spin_phis_2->setEnabled(false);
-        ui->spin_math->setEnabled(false);
-        ui->spin_math_3->setEnabled(false);
-    }
-    else{
-        ui->spin_rus_2->setEnabled(true);
-        ui->spin_phis_2->setEnabled(true);
-        ui->spin_math->setEnabled(true);
-        ui->spin_math_3->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_math_one_3_clicked(){
-    if(ui->radio_math_one_3->isChecked()){
-        //активировать ее родное введение
-        ui->spin_math_3->setEnabled(true);
-
-        ui->spin_rus_3->setEnabled(false);
-        ui->spin_phis_3->setEnabled(false);
-        ui->spin_math_2->setEnabled(false);
-        ui->spin_math->setEnabled(false);
-    }
-    else{
-        ui->spin_rus_3->setEnabled(true);
-        ui->spin_phis_3->setEnabled(true);
-        ui->spin_math_2->setEnabled(true);
-        ui->spin_math->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_math_two_clicked(){
-    if(ui->radio_math_two->isChecked()){
-        //активировать ее родное введение
-        ui->spin_math->setEnabled(true);
-
-        ui->spin_rus->setEnabled(false);
-        ui->spin_phis->setEnabled(false);
-        ui->spin_math_2->setEnabled(false);
-        ui->spin_math_3->setEnabled(false);
-    }
-    else{
-        ui->spin_rus->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-        ui->spin_math_2->setEnabled(true);
-        ui->spin_math_3->setEnabled(true);
-    }
-
-}
-void MainWindow::on_radio_math_two_2_clicked(){
-    if(ui->radio_math_two_2->isChecked()){
-        //активировать ее родное введение
-        ui->spin_math_2->setEnabled(true);
-
-        ui->spin_rus_2->setEnabled(false);
-        ui->spin_phis_2->setEnabled(false);
-        ui->spin_math->setEnabled(false);
-        ui->spin_math_3->setEnabled(false);
-    }
-    else{
-        ui->spin_rus_2->setEnabled(true);
-        ui->spin_phis_3->setEnabled(true);
-        ui->spin_math->setEnabled(true);
-        ui->spin_math_3->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_math_two_3_clicked(){
-    if(ui->radio_math_two_3->isChecked()){
-        //активировать ее родное введение
-        ui->spin_math_3->setEnabled(true);
-
-        ui->spin_rus_3->setEnabled(false);
-        ui->spin_phis_3->setEnabled(false);
-        ui->spin_math_2->setEnabled(false);
-        ui->spin_math->setEnabled(false);
-    }
-    else{
-        ui->spin_rus_3->setEnabled(true);
-        ui->spin_phis_3->setEnabled(true);
-        ui->spin_math_2->setEnabled(true);
-        ui->spin_math->setEnabled(true);
-    }
-}
-
-void MainWindow::on_radio_phys_one_clicked(){
-    if(ui->radio_phys_one->isChecked()){
-        //активировать ее родное введение
-        ui->spin_phis->setEnabled(true);
-
-        ui->spin_rus->setEnabled(false);
-        ui->spin_math->setEnabled(false);
-        ui->spin_phis_2->setEnabled(false);
-        ui->spin_phis_3->setEnabled(false);
-    }
-    else{
-        ui->spin_rus->setEnabled(true);
-        ui->spin_math->setEnabled(true);
-        ui->spin_phis_2->setEnabled(true);
-        ui->spin_phis_3->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_phys_one_2_clicked(){
-    if(ui->radio_phys_one_2->isChecked()){
-        //активировать ее родное введение
-        ui->spin_phis_2->setEnabled(true);
-
-        ui->spin_rus_2->setEnabled(false);
-        ui->spin_math_2->setEnabled(false);
-        ui->spin_phis->setEnabled(false);
-        ui->spin_phis_3->setEnabled(false);
-    }
-    else{
-        ui->spin_rus_2->setEnabled(true);
-        ui->spin_math_2->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-        ui->spin_phis_3->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_phys_one_3_clicked(){
-    if(ui->radio_phys_one_3->isChecked()){
-        //активировать ее родное введение
-        ui->spin_phis_3->setEnabled(true);
-
-        ui->spin_rus_3->setEnabled(false);
-        ui->spin_math_3->setEnabled(false);
-        ui->spin_phis->setEnabled(false);
-        ui->spin_phis_2->setEnabled(false);
-    }
-    else{
-        ui->spin_rus_3->setEnabled(true);
-        ui->spin_math_3->setEnabled(true);
-        ui->spin_phis_2->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-    }
-}
-
-void MainWindow::on_radio_phys_two_clicked(){
-    if(ui->radio_phys_two->isChecked()){
-        //активировать ее родное введение
-        ui->spin_phis->setEnabled(true);
-
-        ui->spin_rus->setEnabled(false);
-        ui->spin_math->setEnabled(false);
-        ui->spin_phis_3->setEnabled(false);
-        ui->spin_phis_2->setEnabled(false);
-    }
-    else{
-        ui->spin_rus->setEnabled(true);
-        ui->spin_math->setEnabled(true);
-        ui->spin_phis_2->setEnabled(true);
-        ui->spin_phis_3->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_phys_two_2_clicked(){
-    if(ui->radio_phys_two_2->isChecked()){
-        //активировать ее родное введение
-        ui->spin_phis_2->setEnabled(true);
-
-        ui->spin_rus_2->setEnabled(false);
-        ui->spin_math_2->setEnabled(false);
-        ui->spin_phis_3->setEnabled(false);
-        ui->spin_phis->setEnabled(false);
-    }
-    else{
-        ui->spin_rus_2->setEnabled(true);
-        ui->spin_math_2->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-        ui->spin_phis_3->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_phys_3_clicked(){
-    if(ui->radio_phys_3->isChecked()){
-        //активировать ее родное введение
-        ui->spin_phis_3->setEnabled(true);
-
-        ui->spin_rus_3->setEnabled(false);
-        ui->spin_math_3->setEnabled(false);
-        ui->spin_phis->setEnabled(false);
-        ui->spin_phis_2->setEnabled(false);
-    }
-    else{
-        ui->spin_rus_3->setEnabled(true);
-        ui->spin_math_3->setEnabled(true);
-        ui->spin_phis_2->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-    }
-}
-
-void MainWindow::on_radio_rus_clicked(){
-    if(ui->radio_rus->isChecked()){
-        //активировать ее родное введение
-        ui->spin_rus->setEnabled(true);
-
-        ui->spin_rus_2->setEnabled(false);
-        ui->spin_rus_3->setEnabled(false);
-        ui->spin_math->setEnabled(false);
-        ui->spin_phis->setEnabled(false);
-    }
-    else{
-        ui->spin_rus_2->setEnabled(true);
-        ui->spin_rus_3->setEnabled(true);
-        ui->spin_math->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_rus_2_clicked(){
-    if(ui->radio_rus_2->isChecked()){
-        //активировать ее родное введение
-        ui->spin_rus_2->setEnabled(true);
-
-        ui->spin_rus->setEnabled(false);
-        ui->spin_rus_3->setEnabled(false);
-        ui->spin_math_2->setEnabled(false);
-        ui->spin_phis_2->setEnabled(false);
-    }
-    else{
-        ui->spin_rus->setEnabled(true);
-        ui->spin_rus_3->setEnabled(true);
-        ui->spin_math_2->setEnabled(true);
-        ui->spin_phis_2->setEnabled(true);
-    }
-}
-void MainWindow::on_radio_rus_3_clicked(){
-    if(ui->radio_rus_3->isChecked()){
-        //активировать ее родное введение
-        ui->spin_rus_3->setEnabled(true);
-
-        ui->spin_rus->setEnabled(false);
-        ui->spin_rus_2->setEnabled(false);
-        ui->spin_math_3->setEnabled(false);
-        ui->spin_phis_3->setEnabled(false);
-    }
-    else{
-        ui->spin_rus->setEnabled(true);
-        ui->spin_rus_2->setEnabled(true);
-        ui->spin_math_3->setEnabled(true);
-        ui->spin_phis_3->setEnabled(true);
-    }
-}
-
 //для золотой или серебрянной медали и при первом экзе более 90 - автомат
 void MainWindow::on_spin_rus_valueChanged(){
     if(ui->check_medal->isChecked() && ui->spin_rus->value() >= 90){
@@ -491,9 +244,6 @@ void MainWindow::on_spin_rus_valueChanged(){
     else{
         ui->group_marks_exam_2->setEnabled(true);
         ui->group_marks_exam_3->setEnabled(true);
-        ui->spin_math->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-
     }
 
 }
@@ -515,9 +265,6 @@ void MainWindow::on_spin_math_valueChanged(){
     else{
         ui->group_marks_exam_2->setEnabled(true);
         ui->group_marks_exam_3->setEnabled(true);
-        ui->spin_rus->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-
     }
 }
 void MainWindow::on_spin_phis_valueChanged(){
@@ -538,9 +285,6 @@ void MainWindow::on_spin_phis_valueChanged(){
     else{
         ui->group_marks_exam_2->setEnabled(true);
         ui->group_marks_exam_3->setEnabled(true);
-        ui->spin_math->setEnabled(true);
-        ui->spin_phis->setEnabled(true);
-
     }
 }
 
@@ -559,7 +303,6 @@ void MainWindow::on_btn_create_clicked(){
     ui->btn_save->setEnabled(true);
     ui->btn_delete->setEnabled(true);
 }
-//not works
 void MainWindow::on_btn_save_clicked(){
      on_btn_delete_clicked(); on_btn_create_clicked();
 }
@@ -577,25 +320,74 @@ void MainWindow::on_btn_delete_clicked(){
         clear_fields();
 }
 void MainWindow::on_btn_fill_clicked(){
-    Student student("Чесноков Владимир", "1998.04.05", "мужской");
+    Student student("Ололоев Владимир", QDate(1998, 5, 12), "мужской");
     qDebug() << student.get_sbirthday();
     int pos = get_row(student);
     ui->table_students->insertRow(pos);
     list_of_students.insert(list_of_students.begin() + pos, student);
     create_row(student, pos);
 
-    student = Student("Чесноков Владимир", "1998.05.05", "мужской");
+    student = Student("Иванов Иван", QDate(1997, 4, 11), "мужской");
     pos = get_row(student);
     ui->table_students->insertRow(pos);
     list_of_students.insert(list_of_students.begin() + pos, student);
     create_row(student, pos);
 
-    student = Student("Чесноков Владимир", "1998.07.05", "мужской");
+    student = Student("Синецкая Александра", QDate(2000, 5, 12), "женский");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Свиридова Анастасия", QDate(2001, 5, 12), "женский");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Лермонтов Михаил", QDate(1980, 5, 12), "мужской");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Петрова Дарья", QDate(1997, 5, 12), "женский");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Афанасьев Виктор", QDate(1998, 5, 12), "мужской");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Липова Лилия", QDate(2000, 5, 12), "женский");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Синецкий Александр", QDate(1997, 5, 12), "женский");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Капеланов Кирилл", QDate(1998, 5, 12), "женский");
+    pos = get_row(student);
+    ui->table_students->insertRow(pos);
+    list_of_students.insert(list_of_students.begin() + pos, student);
+    create_row(student, pos);
+
+    student = Student("Тарасов Тарас", QDate(1995, 5, 12), "женский");
     pos = get_row(student);
     ui->table_students->insertRow(pos);
     list_of_students.insert(list_of_students.begin() + pos, student);
     create_row(student, pos);
 }
+
 void MainWindow::slt_show_active(){
     clear_fields();
     if(!list_of_students.empty()){
@@ -603,6 +395,7 @@ void MainWindow::slt_show_active(){
         show_student(list_of_students[row]);
     }
 }
+
 void MainWindow::clear_fields(){
     Student student = Student();
     show_student(student);
@@ -633,3 +426,21 @@ void MainWindow::create_row(Student current,int pos){
     ui->table_students->item(pos,2)->setTextAlignment(Qt::AlignCenter);
 
 }
+
+void MainWindow::on_radio_math_one_toggled(bool checked){   ui->spin_math->setEnabled(checked);   }
+void MainWindow::on_radio_math_two_toggled(bool checked){   ui->spin_math->setEnabled(checked);   }
+void MainWindow::on_radio_phys_one_toggled(bool checked){   ui->spin_phis->setEnabled(checked);   }
+void MainWindow::on_radio_phys_two_toggled(bool checked){   ui->spin_phis->setEnabled(checked);   }
+void MainWindow::on_radio_rus_toggled(bool checked){    ui->spin_rus->setEnabled(checked);  }
+
+void MainWindow::on_radio_math_one_2_toggled(bool checked){     ui->spin_math_2->setEnabled(checked);    }
+void MainWindow::on_radio_math_two_2_toggled(bool checked){     ui->spin_math_2->setEnabled(checked);    }
+void MainWindow::on_radio_phys_one_2_toggled(bool checked){     ui->spin_phis_2->setEnabled(checked);    }
+void MainWindow::on_radio_phys_two_2_toggled(bool checked){     ui->spin_phis_2->setEnabled(checked);    }
+void MainWindow::on_radio_rus_2_toggled(bool checked){           ui->spin_rus_2->setEnabled(checked);    }
+
+void MainWindow::on_radio_math_one_3_toggled(bool checked){     ui->spin_math_3->setEnabled(checked);   }
+void MainWindow::on_radio_math_two_3_toggled(bool checked){     ui->spin_math_3->setEnabled(checked);   }
+void MainWindow::on_radio_phys_one_3_toggled(bool checked){     ui->spin_phis_3->setEnabled(checked);   }
+void MainWindow::on_radio_phys_3_toggled(bool checked){         ui->spin_phis_3->setEnabled(checked);   }
+void MainWindow::on_radio_rus_3_toggled(bool checked){          ui->spin_rus_3->setEnabled(checked);    }

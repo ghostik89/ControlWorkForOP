@@ -11,16 +11,16 @@ Student::Student(){
     birthday = "2000.01.01";
     gender = true;
     medal = true;
-    middle_mark = "4.7";
+    middle_mark = "3.0";
     language = "Японский";
-    first_exam = std::pair<QString, QString> ("Математика I", "60");
-    second_exam = std::pair<QString, QString> ("Русский", "60");
-    third_exam = std::pair<QString, QString> ("Физика I", "60");
+    first_exam = std::pair<QString, QString> ("Математика I", "0");
+    second_exam = std::pair<QString, QString> ("Русский", "0");
+    third_exam = std::pair<QString, QString> ("Физика I", "0");
     can_pay = false;
 }
 Student::~Student(){}
-Student::Student(QString nFIO, QString nbirthday, QString ngender){
-    FIO = nFIO; birthday = nbirthday; gender = ngender;
+Student::Student(QString nFIO, QDate nbirthday, QString ngender){
+    FIO = nFIO; birthday = nbirthday.toString(); gender = ngender;
     medal = false;
     middle_mark = 3.0 + rand()%(5 - 3 + 1);
     language = medal ? "Японский": "Английский";
@@ -31,7 +31,7 @@ Student::Student(QString nFIO, QString nbirthday, QString ngender){
     middle_score = (first_exam.second.toInt() + second_exam.second.toInt() + third_exam.second.toInt()) / 3;
     if(middle_score < 50.5){
         can_pay = true;
-        bill = 12000 + rand()%(45000 - 12000 + 1);
+        bill = 12000 + rand() % 3200;
     }
 }
 

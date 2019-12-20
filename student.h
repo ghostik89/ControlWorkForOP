@@ -8,7 +8,7 @@ class Student
 {
 public:
     Student();
-    Student(QString nFIO, QString nbirthday, QString ngender);
+    Student(QString nFIO, QDate nbirthday, QString ngender);
 
     //setters
     void set_FIO(QString new_FIO){ FIO = new_FIO; }
