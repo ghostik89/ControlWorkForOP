@@ -99,6 +99,7 @@ QDataStream& operator<<(QDataStream &out, const Student& current){
         << current.second_exam.first << current.second_exam.second
         << current.third_exam.first << current.third_exam.second
         << current.middle_mark;
+    return out;
 }
 QDataStream& operator>>(QDataStream& in, Student& current){
     in  >> current.FIO >> current.bill
@@ -110,4 +111,5 @@ QDataStream& operator>>(QDataStream& in, Student& current){
 
     current.middle_mark = (current.first_exam.second.toInt() + current.second_exam.second.toInt() + current.third_exam.second.toInt()) / 3;
     current.can_pay = current.bill == "0";
+    return in;
 }

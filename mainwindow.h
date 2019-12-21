@@ -35,28 +35,6 @@ private:
 private slots:
     void on_check_medal_clicked();
     void on_check_dogvor_clicked();
-
-    //проверка уникальности экзамена
-//    void on_radio_math_one_clicked();
-//    void on_radio_math_one_2_clicked();
-//    void on_radio_math_one_3_clicked();
-
-//    void on_radio_math_two_clicked();
-//    void on_radio_math_two_2_clicked();
-//    void on_radio_math_two_3_clicked();
-
-//    void on_radio_phys_one_clicked();
-//    void on_radio_phys_one_2_clicked();
-//    void on_radio_phys_one_3_clicked();
-
-//    void on_radio_phys_two_clicked();
-//    void on_radio_phys_two_2_clicked();
-//    void on_radio_phys_3_clicked();
-
-//    void on_radio_rus_clicked();
-//    void on_radio_rus_2_clicked();
-//    void on_radio_rus_3_clicked();
-
     //автомат
     void on_spin_rus_valueChanged();
     void on_spin_math_valueChanged();
@@ -68,6 +46,8 @@ private slots:
     void on_btn_delete_clicked();
     void on_btn_fill_clicked();
     void slt_show_active();
+
+    //проверка на уникальность
     void on_radio_math_one_toggled(bool checked);
     void on_radio_math_two_toggled(bool checked);
     void on_radio_phys_one_toggled(bool checked);

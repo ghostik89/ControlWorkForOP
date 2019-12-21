@@ -427,10 +427,26 @@ void MainWindow::create_row(Student current,int pos){
 
 }
 
-void MainWindow::on_radio_math_one_toggled(bool checked){   ui->spin_math->setEnabled(checked);   }
-void MainWindow::on_radio_math_two_toggled(bool checked){   ui->spin_math->setEnabled(checked);   }
-void MainWindow::on_radio_phys_one_toggled(bool checked){   ui->spin_phis->setEnabled(checked);   }
-void MainWindow::on_radio_phys_two_toggled(bool checked){   ui->spin_phis->setEnabled(checked);   }
+void MainWindow::on_radio_math_one_toggled(bool checked){
+    ui->spin_math->setEnabled(checked);
+    if(!checked)
+        ui->spin_math->setValue(0);
+}
+void MainWindow::on_radio_math_two_toggled(bool checked){
+    ui->spin_math->setEnabled(checked);
+    if(!checked)
+        ui->spin_math->setValue(0);
+}
+void MainWindow::on_radio_phys_one_toggled(bool checked){
+    ui->spin_phis->setEnabled(checked);
+    if(!checked)
+        ui->spin_phis->setValue(0);
+}
+void MainWindow::on_radio_phys_two_toggled(bool checked){
+    ui->spin_phis->setEnabled(checked);
+    if(!checked)
+        ui->spin_phis->setValue(0);
+}
 void MainWindow::on_radio_rus_toggled(bool checked){    ui->spin_rus->setEnabled(checked);  }
 
 void MainWindow::on_radio_math_one_2_toggled(bool checked){     ui->spin_math_2->setEnabled(checked);    }

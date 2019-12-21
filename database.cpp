@@ -44,17 +44,21 @@ void DataBase::update_db(Student current, int id){
 
 bool DataBase::save_to_file(QString file_name){
     QFile file(file_name);
+    bool right = false;
     if(!file_name.isEmpty() && file.open(QIODevice::WriteOnly)){
         QDataStream out(&file);
         //QMapIterator<int, Student> iter(main_base);
         out << main_base;
+        right = true;
     }
     modified = false;
+    return right;
 }
 
 bool DataBase::load_from_file(QString file_name){
     QFile file(file_name);
     modified = true;
+    bool right = false;
     if(!file_name.isEmpty() && file.open(QIODevice::WriteOnly)){
         QDataStream in(&file);
         main_base.clear();
@@ -65,7 +69,9 @@ bool DataBase::load_from_file(QString file_name){
             main_base.insert(id, student);
             position.push_back(id);
         }
+        right = true;
     }
+    return right;
 }
 
 void DataBase::clear(){
@@ -82,6 +88,7 @@ QDataStream& operator<<(QDataStream& out, const DataBase& db){
         iter.next();
         out << iter.key() << iter.value();
     }
+    return out;
 }
 QDataStream& operator>>(QDataStream& in, DataBase& db){
 //    QMapIterator<int, Student> iter(db.main_base);
