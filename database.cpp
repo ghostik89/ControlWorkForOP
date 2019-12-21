@@ -1,6 +1,7 @@
 #include "database.h"
 #include "student.h"
 #include <QMapIterator>
+#include <QDataStream>
 
 DataBase::DataBase(){}
 DataBase::~DataBase(){}
@@ -41,8 +42,32 @@ void DataBase::update_db(Student current, int id){
     modified = true;
 }
 
-bool DataBase::save_to_file(QString file_name){}
-bool DataBase::load_from_file(QString file_name){}
+bool DataBase::save_to_file(QString file_name){
+    QFile file(file_name);
+    if(!file_name.isEmpty() && file.open(QIODevice::WriteOnly)){
+        QDataStream out(&file);
+        //QMapIterator<int, Student> iter(main_base);
+        out << main_base;
+    }
+    modified = false;
+}
+
+bool DataBase::load_from_file(QString file_name){
+    QFile file(file_name);
+    modified = true;
+    if(!file_name.isEmpty() && file.open(QIODevice::WriteOnly)){
+        QDataStream in(&file);
+        main_base.clear();
+        position.clear();
+        int id; Student student;
+        while(!file.atEnd()){
+            in >> id >> student;
+            main_base.insert(id, student);
+            position.push_back(id);
+        }
+    }
+}
+
 void DataBase::clear(){
     main_base.clear();
     position.clear();
@@ -51,8 +76,19 @@ void DataBase::clear(){
 
 bool DataBase::be_modified(){ return modified;  }
 
-QDataStream& DataBase::operator<<(QDataStream& out){
-    for (auto iter = main_base.begin(); iter != main_base.end(); iter++)
-        out << iter.key() <<  iter.value();
+QDataStream& operator<<(QDataStream& out, const DataBase& db){
+    QMapIterator<int, Student> iter(db.main_base);
+    while(iter.hasNext()){
+        iter.next();
+        out << iter.key() << iter.value();
+    }
 }
-QDataStream& DataBase::operator>>(QDataStream& in){}
+QDataStream& operator>>(QDataStream& in, DataBase& db){
+//    QMapIterator<int, Student> iter(db.main_base);
+//    int id = 0;
+//    Student current;
+//    while(iter.hasNext()){
+//        iter.next();
+//        in >> current;
+//    }
+}

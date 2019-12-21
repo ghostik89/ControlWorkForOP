@@ -23,10 +23,9 @@ public:
     bool load_from_file(QString file_name);
     void clear();
     bool be_modified();
-    void sort();
 
-    QDataStream& operator<<(QDataStream& out);
-    QDataStream& operator>>(QDataStream& in);
+    friend QDataStream& operator<<(QDataStream& out, const DataBase& db);
+    friend QDataStream& operator>>(QDataStream& in, DataBase& db);
 
 private:
     QMap<int, Student> main_base;

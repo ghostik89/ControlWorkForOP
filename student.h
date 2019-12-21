@@ -41,8 +41,8 @@ public:
     //operators
     bool operator==(const Student& right);
     Student& operator=(const Student& right);
-    QDataStream& operator<<(QDataStream &out);
-    QDataStream& operator>>(QDataStream& in);
+    friend QDataStream& operator<<(QDataStream &out, const Student& current);
+    friend QDataStream& operator>>(QDataStream& in, Student& current);
 
     static bool compare_students(Student first, Student second);
     ~Student();

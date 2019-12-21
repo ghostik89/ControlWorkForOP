@@ -91,26 +91,23 @@ Student& Student::operator=(const Student& right){
 
     return *this;
 }
-QDataStream& Student::operator<<(QDataStream &out){
-    out << FIO << birthday << medal << middle_mark<< language  << first_exam.first
-        << first_exam.second<< second_exam.first << second_exam.second << third_exam.first << third_exam.second << can_pay << bill;
-    return out;
-}
-QDataStream& Student::operator>>(QDataStream& in){
-    in >> FIO;
-    in >> birthday;
-    in >> middle_mark;
-    in >> language;
-    in >> first_exam.first;
-    in >> first_exam.second;
-    in >> second_exam.first;
-    in >> second_exam.second;
-    in >> third_exam.first;
-    in >> third_exam.second;
-    in >> bill;
 
-    //todo: add bools
-    if(bill == "0")
-        can_pay = true;
-    medal = middle_mark.toInt() > 3.5;
+QDataStream& operator<<(QDataStream &out, const Student& current){
+    out << current.FIO << current.bill
+        << current.gender << current.birthday << current.language
+        << current.first_exam.first << current.first_exam.second
+        << current.second_exam.first << current.second_exam.second
+        << current.third_exam.first << current.third_exam.second
+        << current.middle_mark;
+}
+QDataStream& operator>>(QDataStream& in, Student& current){
+    in  >> current.FIO >> current.bill
+        >> current.gender >> current.birthday >> current.language
+        >> current.first_exam.first >> current.first_exam.second
+        >> current.second_exam.first >> current.second_exam.second
+        >> current.third_exam.first >> current.third_exam.second
+        >> current.middle_mark;
+
+    current.middle_mark = (current.first_exam.second.toInt() + current.second_exam.second.toInt() + current.third_exam.second.toInt()) / 3;
+    current.can_pay = current.bill == "0";
 }

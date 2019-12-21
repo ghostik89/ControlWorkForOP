@@ -614,8 +614,10 @@
     <property name="title">
      <string>Файл</string>
     </property>
+    <addaction name="create_file"/>
     <addaction name="open_from_file"/>
     <addaction name="safe_to_file"/>
+    <addaction name="save_as_to_file"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -628,14 +630,24 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="create_file">
+   <property name="text">
+    <string> Создать базу данных</string>
+   </property>
+  </action>
   <action name="open_from_file">
    <property name="text">
-    <string>Открыть файл</string>
+    <string>Открыть базу данных</string>
    </property>
   </action>
   <action name="safe_to_file">
    <property name="text">
-    <string>Сохранить файл</string>
+    <string> Сохранить базу данных</string>
+   </property>
+  </action>
+  <action name="save_as_to_file">
+   <property name="text">
+    <string>Сохранить как</string>
    </property>
   </action>
  </widget>
