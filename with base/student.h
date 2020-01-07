@@ -8,7 +8,7 @@ class Student
 {
 public:
     Student();
-    Student(QString nFIO, QDate nbirthday, QString ngender);
+    Student(QString nFIO, QDate nbirthday, QString ngender);//конструктор-генератор рандомной записи
 
     //setters
     void set_FIO(QString new_FIO){ FIO = new_FIO; }
@@ -36,30 +36,34 @@ public:
     void get_third_exam(std::pair<QString, QString> &third);
     bool get_can_pay() { return can_pay; }
     int get_student_bill(){ return bill.toInt(); }
-    QString get_middle_score() {return QString::number(middle_score); }
-    double get_middle_score_d() {return middle_score; }
+    QString get_middle_score() {return middle_score_st; }
 
-    //operators
+    //перегруженные операторы
     bool operator==(const Student& right);
+    bool operator!=(const Student& right);
+    bool operator>(const Student& right);
+    bool operator<(const Student& right);
     Student& operator=(const Student& right);
     friend QDataStream& operator<<(QDataStream &out, const Student& current);
     friend QDataStream& operator>>(QDataStream& in, Student& current);
 
+    //сравнение двух записей
     static bool compare_students(Student first, Student second);
     ~Student();
 
 
 private:
-    QString FIO;
-    QString birthday;
-    QString gender;
-    bool medal;
+    QString FIO;      //фамилия студента
+    QString birthday; //дата его рождения
+    QString gender;   //пол
+    bool medal;       //наличие золо
     QString middle_mark;
     QString language;
     std::pair<QString, QString> first_exam;
     std::pair<QString, QString> second_exam;
     std::pair<QString, QString> third_exam;
     double middle_score;
+    QString middle_score_st;
     bool can_pay;
     QString bill;
 };

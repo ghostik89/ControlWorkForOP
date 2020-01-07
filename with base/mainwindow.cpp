@@ -2,12 +2,11 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include <QValidator>
-#include <map>
-#include <vector>
 #include "student.h"
-#include <algorithm>
-
-using namespace std;
+#include <QMessageBox>
+#include <QTextCodec>
+#include <QFileDialog>
+#include <QMapIterator>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -294,10 +293,11 @@ void MainWindow::on_spin_phis_valueChanged(){
 void MainWindow::on_btn_create_clicked(){
     Student student;
     save(student);
-    int insert_pos = get_row(student);
+    int insert_pos = db.get_current_row(student);
 
     ui->table_students->insertRow(insert_pos);
-    list_of_students.insert(list_of_students.begin() + insert_pos, student);
+    //list_of_students.insert(list_of_students.begin() + insert_pos, student);
+    db.set_student(student, insert_pos);
 
     create_row(student, insert_pos);
     ui->btn_save->setEnabled(true);
@@ -309,9 +309,10 @@ void MainWindow::on_btn_save_clicked(){
 void MainWindow::on_btn_delete_clicked(){
     int current_row = ui->table_students->currentRow();
     ui->table_students->removeRow(current_row);
-    list_of_students.erase(list_of_students.begin() + current_row);
+    //list_of_students.erase(list_of_students.begin() + current_row);
+    db.delete_student(current_row);
 
-    if(list_of_students.empty()){
+    if(db.count() == 0){
         ui->btn_save->setEnabled(false);
         ui->btn_delete->setEnabled(false);
     }
@@ -322,94 +323,110 @@ void MainWindow::on_btn_delete_clicked(){
 void MainWindow::on_btn_fill_clicked(){
     Student student("Ололоев Владимир", QDate(1998, 5, 12), "мужской");
     qDebug() << student.get_sbirthday();
-    int pos = get_row(student);
+    int pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Иванов Иван", QDate(1997, 4, 11), "мужской");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Синецкая Александра", QDate(2000, 5, 12), "женский");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Свиридова Анастасия", QDate(2001, 5, 12), "женский");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Лермонтов Михаил", QDate(1980, 5, 12), "мужской");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Петрова Дарья", QDate(1997, 5, 12), "женский");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Афанасьев Виктор", QDate(1998, 5, 12), "мужской");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Липова Лилия", QDate(2000, 5, 12), "женский");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Синецкий Александр", QDate(1997, 5, 12), "женский");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Капеланов Кирилл", QDate(1998, 5, 12), "женский");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 
     student = Student("Тарасов Тарас", QDate(1995, 5, 12), "женский");
-    pos = get_row(student);
+    pos = db.get_current_row(student);
     ui->table_students->insertRow(pos);
-    list_of_students.insert(list_of_students.begin() + pos, student);
+    //list_of_students.insert(list_of_students.begin() + pos, student);
+    db.set_student(student, pos);
     create_row(student, pos);
 }
 
 void MainWindow::slt_show_active(){
     clear_fields();
-    if(!list_of_students.empty()){
+    if(db.count() != 0){
         int row = ui->table_students->currentRow();
-        show_student(list_of_students[row]);
+        show_student(db.get_current_student(row));
     }
 }
 
 void MainWindow::clear_fields(){
     Student student = Student();
+    ui->spin_rus->setValue(0);
+    ui->spin_math->setValue(0);
+    ui->spin_phis->setValue(0);
+
+    ui->spin_rus_2->setValue(0);
+    ui->spin_math_2->setValue(0);
+    ui->spin_phis_2->setValue(0);
+
+    ui->spin_rus_3->setValue(0);
+    ui->spin_math_3->setValue(0);
+    ui->spin_phis_3->setValue(0);
     show_student(student);
-}
-int MainWindow::get_row(Student student){
-    int index = 0;
-    while(!list_of_students.empty() && Student::compare_students(student, list_of_students[index++])){
-        index++;
-    }
-    qDebug() << index;
-    return index;
 }
 
 void MainWindow::create_row(Student current,int pos){
+    ui->btn_save->setEnabled(true);
+    ui->btn_delete->setEnabled(true);
     QTableWidgetItem *item;
 
     //Заполняем первую ячейку
@@ -427,7 +444,7 @@ void MainWindow::create_row(Student current,int pos){
     item = new QTableWidgetItem(current.get_middle_score());
     ui->table_students->setItem(pos, 2, item);
     ui->table_students->item(pos,2)->setTextAlignment(Qt::AlignCenter);
-
+    ui->table_students->setCurrentItem(item);
 }
 
 void MainWindow::on_radio_math_one_toggled(bool checked){
@@ -512,15 +529,109 @@ void MainWindow::on_check_dogvor_toggled(bool checked){
     ui->spin_bill->setEnabled(checked);
 }
 
+
 void MainWindow::on_create_file_triggered(){
+    //ui->table_students->clearContents();
+    QTextCodec* c = QTextCodec::codecForLocale();//установить кодек для файла
+    QString nfile_name = QFileDialog::getOpenFileName(this, c->toUnicode("Create file"), "/", c->toUnicode("Text file(*.txt)"));//получить имя строки
+
+    if(!nfile_name.isEmpty()){//если имя файла получено
+        file_name = nfile_name;//скопируем имя файла
+
+        //создаем бд
+        ui->btn_create->setEnabled(true);
+        ui->btn_fill->setEnabled(true);
+        db = DataBase();
+    }
+    else{//выводим сообщение об ошибке
+        QMessageBox ask(QMessageBox::Question, "Ошибка!", "Имя файла или директории не найдено, попробуйте создать его еще раз»", { QMessageBox::Ok });
+    }
+}
+
+//void MainWindow::closeEvent(QCloseEvent * event) - здесь должна быть перегрузка закрытия
+//{
+//QMessageBox ask(QMessageBox::Question, "РџСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ", "РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ?", { QMessageBox::Save, QMessageBox::Discard, QMessageBox::Cancel }, this);
+//int pressed = -1;
+//if (!records.isModified() || (pressed = ask.exec()) != QMessageBox::Cancel)
+//{
+//if (pressed == QMessageBox::Save)
+//if (lastAdress.isEmpty())
+//on_saveBaseAs_triggered();
+//else
+//{
+//if (!records.save(lastAdress))
+//{ //СЃРѕРѕР±С‰РµРЅРёРµ Рѕ РЅРµСѓРґР°С‡Рµ
+//QMessageBox ask(QMessageBox::Question, "РћС€РёР±РєР°", "РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕС…СЂР°РЅРёС‚СЊ С„Р°Р№Р»", { QMessageBox::Ok });
+//}
+//}
+//}
+//else
+//{
+//event->ignore();
+//}
+
+//}
+void MainWindow::closeEvent(QCloseEvent * event){
 
 }
 
-void MainWindow::on_btn_delete_middle_clicked(){
-    double middle = ui->spin_middle->value();
-    for(size_t i = 0; i < list_of_students.size(); i++)
-        if(list_of_students[i].get_middle_score_d() <= middle){
-            ui->table_students->removeRow(i);
-            list_of_students.erase(list_of_students.begin() + i);
+void MainWindow::on_open_from_file_triggered(){//баг - если в таблице были записи, он их не затрет
+    //db.clear();
+    //ui->table_students->clear();
+    QTextCodec* c = QTextCodec::codecForLocale();//получить кодек
+    //получить имя файла
+    QString nfile_name = QFileDialog::getOpenFileName(this, c->toUnicode("Open file"), "/", c->toUnicode("Text file(*.txt)"));
+
+    if(!nfile_name.isEmpty()){//если имя файоа не пусто
+        file_name = nfile_name;//копируем имя нового файла
+        bool com = db.load_from_file(file_name);//загружаем его в бд
+
+        if(!com){//если что-то пошло не такЫ
+            qDebug() << "Incorrect!!";
+            QMessageBox ask(QMessageBox::Question, "Ошибка!", "Невозможно считать файл!", { QMessageBox::Ok });
         }
+        else{//если все отлично
+            for(int i = 0; i < db.count(); i++){//генерируем новую таблицу из текущей бд
+                Student temp;
+                temp = db.get_current_student(i);
+                create_row(temp, i);
+             }
+        }
+        ui->btn_fill->setEnabled(com);
+        ui->btn_save->setEnabled(com);
+        ui->btn_create->setEnabled(com);
+        ui->btn_delete->setEnabled(com);
+    }
+    else//иначе - вывести соообщение об ошибке
+        QMessageBox ask(QMessageBox::Question, "Ошибка!", "404 файл не найден!", { QMessageBox::Ok });
+}
+
+void MainWindow::on_safe_to_file_triggered(){
+    if(!file_name.isEmpty())//если имя файла не пустое
+        db.save_to_file(file_name);//просто пишем в файл
+    else
+        on_save_as_to_file_triggered();//сохраняем как
+}
+
+void MainWindow::on_save_as_to_file_triggered(){
+    QTextCodec* c = QTextCodec::codecForLocale();//узнать кодек
+    //узнать имя файла
+    QString nfile_name = QFileDialog::getOpenFileName(this, c->toUnicode("Open file"), "/", c->toUnicode("Text file(*.txt)"));
+
+    if(!nfile_name.isEmpty()){//если оно не пусто
+        file_name = nfile_name;//новое имя файла - копировать
+        bool complete = db.save_to_file(file_name);//сохранить бд в файл
+        if(!complete){//если что-то идет не так
+            qDebug() << "Incorrect!!";
+            //вывести сообщениеы
+            QMessageBox ask(QMessageBox::Question, "Ошибка!", "Невозможно считать файл!", { QMessageBox::Ok });
+        }
+        else{//показать первого студента
+            Student current = db.get_current_student(1);
+            //создать колонки
+            show_student(current);
+        }
+    }
+    else//вывести сообщение об ошибке
+        QMessageBox ask(QMessageBox::Question, "Ошибка!", "404 Файл не найден!", { QMessageBox::Ok });
 }

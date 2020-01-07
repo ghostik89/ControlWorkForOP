@@ -31,6 +31,7 @@ private:
     QMap<int, Student> main_base;
     QVector<int> position;
     bool modified;
+    //int last_id;
 };
 
 #endif // DATABASE_H

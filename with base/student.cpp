@@ -29,6 +29,7 @@ Student::Student(QString nFIO, QDate nbirthday, QString ngender){
     third_exam = std::pair<QString, QString> ("Математика I", QString::number(0 + rand()%(100 - 0 + 1)));
 
     middle_score = (first_exam.second.toInt() + second_exam.second.toInt() + third_exam.second.toInt()) / 3;
+    middle_score_st = QString::number(middle_score);
     if(middle_score < 50.5){
         can_pay = true;
         bill = 12000 + rand() % 3200;
@@ -48,6 +49,7 @@ void Student::set_third_exam(QString nthird_exam_name, int nthird_exam_score){
     third_exam.first = nthird_exam_name;
     third_exam.second = QString::number(nthird_exam_score);
     middle_score = (first_exam.second.toInt() + second_exam.second.toInt() + third_exam.second.toInt()) / 3;
+    middle_score_st = QString::number(middle_score);
 }
 
 //getters
@@ -64,9 +66,18 @@ void Student::get_third_exam(std::pair<QString, QString> &third){
     third.second = third_exam.second;
 }
 
-//compare
-bool Student::compare_students(Student first, Student second){
-    return QString::compare(first.FIO, second.FIO) > 0 && first.middle_mark.toDouble() > second.middle_mark.toDouble() && first.middle_score > second.middle_score;
+////compare
+//bool Student::compare_students(Student first, Student second){
+//    return QString::compare(first.FIO, second.FIO) > 0 && first.medal && first.middle_score > second.middle_score;
+//}
+bool Student::operator!=(const Student& right){
+    return !(*this == right);
+}
+bool Student::operator>(const Student& right){
+    return  QString::compare(FIO, right.FIO) > 0 || right.middle_score < middle_score;
+}
+bool Student::operator<(const Student& right){
+    return  QString::compare(FIO, right.FIO) < 0 || right.middle_score > middle_score;
 }
 bool Student::operator==(const Student& right){
     return FIO == right.FIO && right.bill == bill && right.medal && medal
@@ -88,6 +99,7 @@ Student& Student::operator=(const Student& right){
     third_exam = right.third_exam;
     middle_mark = right.middle_mark;
     middle_score = right.middle_score;
+    middle_score_st = right.middle_score_st;
 
     return *this;
 }
@@ -98,7 +110,7 @@ QDataStream& operator<<(QDataStream &out, const Student& current){
         << current.first_exam.first << current.first_exam.second
         << current.second_exam.first << current.second_exam.second
         << current.third_exam.first << current.third_exam.second
-        << current.middle_mark;
+        << current.middle_mark << current.middle_score_st;
     return out;
 }
 QDataStream& operator>>(QDataStream& in, Student& current){
@@ -107,9 +119,6 @@ QDataStream& operator>>(QDataStream& in, Student& current){
         >> current.first_exam.first >> current.first_exam.second
         >> current.second_exam.first >> current.second_exam.second
         >> current.third_exam.first >> current.third_exam.second
-        >> current.middle_mark;
-
-    current.middle_mark = (current.first_exam.second.toInt() + current.second_exam.second.toInt() + current.third_exam.second.toInt()) / 3;
-    current.can_pay = current.bill == "0";
+        >> current.middle_mark >> current.middle_score_st;
     return in;
 }

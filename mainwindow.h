@@ -5,6 +5,7 @@
 #include "student.h"
 #include <QMap>
 #include <vector>
+#include "database.h"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ private:
     Ui::MainWindow *ui;
     QMap<int, Student> map_of_students;
     vector<Student> list_of_students;
+
 
     void save(Student& current);
     void show_student(Student current);
@@ -63,6 +65,9 @@ private slots:
     void on_radio_phys_one_3_toggled(bool checked);
     void on_radio_phys_3_toggled(bool checked);
     void on_radio_rus_3_toggled(bool checked);
+    void on_check_dogvor_toggled(bool checked);
+    void on_create_file_triggered();
+    void on_btn_delete_middle_clicked();
 };
 
 #endif // MAINWINDOW_H
